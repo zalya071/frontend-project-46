@@ -18,10 +18,21 @@
     "gendiff": "./bin/gendiff.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "lint": "eslint .",
+    "test-coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "dependencies": {
     "commander": "^14.0.3",
+    "js-yaml": "^4.1.1",
     "lodash": "^4.18.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "cross-env": "^10.1.0",
+    "eslint": "^10.3.0",
+    "globals": "^17.6.0",
+    "jest": "^30.3.0"
   }
 }
