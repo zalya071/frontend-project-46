@@ -1,8 +1,8 @@
-const spacesCount = 4;
+const spacesCount = 4
 
 const makeIndent = (depth, sign = '  ') => (
   ' '.repeat(depth * spacesCount - 2) + sign
-);
+)
 
 const stringify = (value, depth) => {
   if (
@@ -10,57 +10,57 @@ const stringify = (value, depth) => {
     || typeof value !== 'object'
     || Array.isArray(value)
   ) {
-    return String(value);
+    return String(value)
   }
 
   const lines = Object.entries(value).map(
     ([key, val]) => (
       `${' '.repeat((depth + 1) * spacesCount)}${key}: ${stringify(val, depth + 1)}`
     ),
-  );
+  )
 
   return [
     '{',
     ...lines,
     `${' '.repeat(depth * spacesCount)}}`,
-  ].join('\n');
-};
+  ].join('\n')
+}
 
-const stylish = (tree) => {
+const stylish = tree => {
   const iter = (nodes, depth) => {
-    const lines = nodes.flatMap((node) => {
+    const lines = nodes.flatMap(node => {
       switch (node.type) {
         case 'added':
-          return `${makeIndent(depth, '+ ')}${node.key}: ${stringify(node.value, depth)}`;
+          return `${makeIndent(depth, '+ ')}${node.key}: ${stringify(node.value, depth)}`
 
         case 'removed':
-          return `${makeIndent(depth, '- ')}${node.key}: ${stringify(node.value, depth)}`;
+          return `${makeIndent(depth, '- ')}${node.key}: ${stringify(node.value, depth)}`
 
         case 'unchanged':
-          return `${makeIndent(depth, '  ')}${node.key}: ${stringify(node.value, depth)}`;
+          return `${makeIndent(depth, '  ')}${node.key}: ${stringify(node.value, depth)}`
 
         case 'changed':
           return [
             `${makeIndent(depth, '- ')}${node.key}: ${stringify(node.oldValue, depth)}`,
             `${makeIndent(depth, '+ ')}${node.key}: ${stringify(node.newValue, depth)}`,
-          ];
+          ]
 
         case 'nested':
-          return `${makeIndent(depth, '  ')}${node.key}: ${iter(node.children, depth + 1)}`;
+          return `${makeIndent(depth, '  ')}${node.key}: ${iter(node.children, depth + 1)}`
 
         default:
-          throw new Error(`Unknown type: ${node.type}`);
+          throw new Error(`Unknown type: ${node.type}`)
       }
-    });
+    })
 
     return [
       '{',
       ...lines,
       `${' '.repeat((depth - 1) * spacesCount)}}`,
-    ].join('\n');
-  };
+    ].join('\n')
+  }
 
-  return iter(tree, 1);
-};
+  return iter(tree, 1)
+}
 
-export default stylish;
+export default stylish
