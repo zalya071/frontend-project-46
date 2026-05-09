@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const isObject = (value) => (
+const isObject = value => (
   value !== null && typeof value === 'object' && !Array.isArray(value)
 )
 
@@ -12,7 +12,7 @@ const buildTree = (obj1, obj2) => {
 
   const uniqueKeys = _.uniq(keys)
 
-  return uniqueKeys.map((key) => {
+  return uniqueKeys.map(key => {
     if (!Object.hasOwn(obj2, key)) {
       return {
         key,

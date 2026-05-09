@@ -18,7 +18,7 @@ export default [
     rules: {
       'quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'never'],
-      '@stylistic/arrow-parens': ['error', 'always'],
+      '@stylistic/arrow-parens': ['error', 'as-needed'],
       '@stylistic/eol-last': ['error', 'always'],
     },
   },
