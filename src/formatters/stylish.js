@@ -26,31 +26,23 @@ const stringify = (value, depth) => {
   ].join('\n');
 };
 
-const formatValue = (key, value, depth) => {
-  const stringified = stringify(value, depth);
-
-  return stringified === ''
-    ? `${key}:`
-    : `${key}: ${stringified}`;
-};
-
 const stylish = (tree) => {
   const iter = (nodes, depth) => {
     const lines = nodes.flatMap((node) => {
       switch (node.type) {
         case 'added':
-          return `${makeIndent(depth, '+ ')}${formatValue(node.key, node.value, depth)}`;
+          return `${makeIndent(depth, '+ ')}${node.key}: ${stringify(node.value, depth)}`;
 
         case 'removed':
-          return `${makeIndent(depth, '- ')}${formatValue(node.key, node.value, depth)}`;
+          return `${makeIndent(depth, '- ')}${node.key}: ${stringify(node.value, depth)}`;
 
         case 'unchanged':
-          return `${makeIndent(depth, '  ')}${formatValue(node.key, node.value, depth)}`;
+          return `${makeIndent(depth, '  ')}${node.key}: ${stringify(node.value, depth)}`;
 
         case 'changed':
           return [
-            `${makeIndent(depth, '- ')}${formatValue(node.key, node.oldValue, depth)}`,
-            `${makeIndent(depth, '+ ')}${formatValue(node.key, node.newValue, depth)}`,
+            `${makeIndent(depth, '- ')}${node.key}: ${stringify(node.oldValue, depth)}`,
+            `${makeIndent(depth, '+ ')}${node.key}: ${stringify(node.newValue, depth)}`,
           ];
 
         case 'nested':
