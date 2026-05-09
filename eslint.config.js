@@ -16,9 +16,9 @@ export default [
       },
     },
     rules: {
-      quotes: ['error', 'single'],
+      'quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'never'],
-      '@stylistic/arrow-parens': ['error', 'as-needed'],
+      '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/eol-last': ['error', 'always'],
     },
   },

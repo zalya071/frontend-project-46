@@ -8,7 +8,7 @@ const formatters = {
   json,
 }
 
-const getFormatter = formatName => {
+const getFormatter = (formatName) => {
   if (!formatters[formatName]) {
     throw new Error(`Unknown format: ${formatName}`)
   }
