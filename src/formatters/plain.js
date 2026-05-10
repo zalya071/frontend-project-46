@@ -1,8 +1,8 @@
-const isObject = value => (
+const isObject = (value) => (
   value !== null && typeof value === 'object'
 )
 
-const formatValue = value => {
+const formatValue = (value) => {
   if (isObject(value)) {
     return '[complex value]'
   }
@@ -14,9 +14,9 @@ const formatValue = value => {
   return String(value)
 }
 
-const plain = tree => {
+const plain = (tree) => {
   const iter = (nodes, path = '') => {
-    const lines = nodes.flatMap(node => {
+    const lines = nodes.flatMap((node) => {
       const property = path
         ? `${path}.${node.key}`
         : node.key
