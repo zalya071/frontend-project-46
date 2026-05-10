@@ -26,9 +26,9 @@ const stringify = (value, depth) => {
   ].join('\n')
 }
 
-const stylish = (tree) => {
+const stylish = tree => {
   const iter = (nodes, depth) => {
-    const lines = nodes.flatMap((node) => {
+    const lines = nodes.flatMap(node => {
       switch (node.type) {
         case 'added':
           return `${makeIndent(depth, '+ ')}${node.key}: ${stringify(node.value, depth)}`
