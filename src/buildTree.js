@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const isObject = (value) => (
+const isObject = value => (
   value !== null && typeof value === 'object' && !Array.isArray(value)
 )
 
